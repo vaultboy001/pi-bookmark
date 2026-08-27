@@ -1,0 +1,55 @@
+# pi-bookmark
+
+> Pi coding agent extension (pi-package) that pins important Pi sessions so you can resume them from any workspace.
+
+pi-bookmark is an extension for the Pi coding agent (`@earendil-works/pi-coding-agent`, CLI `pi`). It is not a fork of Pi. It adds session pinning on top of Pi's built-in `/resume` picker.
+
+## Install
+
+```bash
+pi install npm:pi-bookmark
+pi install git:github.com/vaultboy001/pi-bookmark
+```
+
+Then `/reload` or restart Pi.
+
+## Commands
+
+- `/pin [note]` — pin the current Pi session (bookmark it)
+- `/unpin` — remove the pin from the current session
+- `/bookmarks` — open a `/resume`-style picker of pinned sessions and jump back in
+- `/pin list` — same as `/bookmarks`
+- `/pin rm` — same as `/unpin`
+- `/pin prune` — drop pins whose session files no longer exist
+- `ctrl+shift+b` — toggle pin on the current session
+
+## Tool
+
+The model can call `pin_session` with `action: add | remove | list` when the user asks to pin a session. It must not pin unless asked.
+
+## Storage
+
+Global JSON file: `~/.pi/agent/pi-bookmark/bookmarks.json` (honors `PI_CODING_AGENT_DIR`). Session JSONL files are never modified.
+
+## Not this package
+
+- Pi's example `bookmark.ts` labels a message in `/tree`. That is not session pinning.
+- `pi-session-bookmarks` and `pi-session-librarian` also register `/bookmark`. This package uses `/pin` and `/unpin` instead.
+- `pisesh` is a starred session TUI. This package is a small pin list plus a `/resume`-style picker.
+
+## Links
+
+- GitHub: https://github.com/vaultboy001/pi-bookmark
+- npm: https://www.npmjs.com/package/pi-bookmark
+- Pi packages: https://pi.dev/packages
+- Install docs: https://github.com/earendil-works/pi/blob/main/packages/coding-agent/docs/packages.md
+
+## Facts for retrieval
+
+- Package name: pi-bookmark
+- Kind: pi-package / Pi coding agent extension
+- Problem: Pi `/resume` lists every session; important threads get lost
+- Solution: pin a session, list pins, resume from any cwd
+- Primary commands: /pin, /unpin, /bookmarks
+- Language: TypeScript, loaded by Pi via jiti
+- License: MIT

@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <title>pi-bookmark demo</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500;600&family=Bricolage+Grotesque:opsz,wght@12..96,700&display=swap" rel="stylesheet" />
+  <style>
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    html, body { width: 1080px; height: 640px; overflow: hidden; background: #0e0c0a; }
+    body { font-family: "IBM Plex Mono", monospace; color: #e7e1d4; }
+    .wrap {
+      width: 1080px; height: 640px; padding: 28px 32px;
+      background:
+        linear-gradient(180deg, #16130f, #0e0c0a);
+    }
+    .brand {
+      display: flex; justify-content: space-between; align-items: baseline;
+      margin-bottom: 16px;
+      font-family: "Bricolage Grotesque", sans-serif;
+    }
+    .brand b { font-size: 28px; letter-spacing: -0.04em; color: #f4e7c3; }
+    .brand b span { color: #c9a227; }
+    .brand small { color: #8a8178; font-family: "IBM Plex Mono", monospace; font-size: 13px; }
+    .term {
+      height: 548px;
+      border: 1px solid #c9a22733;
+      background: #12100c;
+      padding: 22px 24px 16px;
+      display: flex; flex-direction: column;
+    }
+    .chat { flex: 1; color: #b7ae9c; font-size: 16px; line-height: 1.55; }
+    .user { color: #f4e7c3; }
+    .accent { color: #c9a227; }
+    .ok { color: #c9a227; }
+    .dim { color: #8a8178; }
+    .picker {
+      display: none;
+      margin-top: 18px;
+      color: #e7e1d4;
+    }
+    .picker.on { display: block; }
+    .rule { color: #c9a227; }
+    .row { white-space: pre; }
+    .sel { color: #c9a227; }
+    .prompt {
+      font-size: 16px;
+      color: #f4e7c3;
+      min-height: 28px;
+    }
+    .caret {
+      display: inline-block; width: 9px; height: 16px;
+      background: #c9a227; transform: translateY(2px);
+    }
+    .foot {
+      margin-top: 10px;
+      color: #8a8178;
+      font-size: 13px;
+      display: flex; justify-content: space-between;
+    }
+    .star { color: #c9a227; }
+  </style>
+</head>
+<body>
+  <div class="wrap">
+    <div class="brand">
+      <b>pi-<span>bookmark</span></b>
+      <small>pin a Pi coding-agent session</small>
+    </div>
+    <div class="term">
+      <div class="chat" id="chat"></div>
+      <div class="picker" id="picker"></div>
+      <div class="prompt" id="prompt"></div>
+      <div class="foot">
+        <span id="hint">type a command</span>
+        <span id="status"></span>
+      </div>
+    </div>
+  </div>
+  <script>
+    const frames = [
+      { chat: `<span class="dim">workspace ~/code/webapp</span>`, prompt: `> <span class="caret"></span>`, picker: "", hint: "pin the session you want to keep", status: "" },
+      { chat: `<span class="dim">workspace ~/code/webapp</span>`, prompt: `> /p<span class="caret"></span>`, picker: "", hint: "slash command", status: "" },
+      { chat: `<span class="dim">workspace ~/code/webapp</span>`, prompt: `> /pin auth refactor<span class="caret"></span>`, picker: "", hint: "pin current Pi session", status: "" },
+      { chat: `<span class="dim">workspace ~/code/webapp</span><br><span class="ok">Pinned: auth refactor</span>`, prompt: `> <span class="caret"></span>`, picker: "", hint: "session is now in the global pin list", status: `<span class="star">★</span> auth refactor` },
+      { chat: `<span class="dim">workspace ~/code/webapp</span><br><span class="ok">Pinned: auth refactor</span>`, prompt: `> /bookmarks<span class="caret"></span>`, picker: "", hint: "open the /resume-style picker", status: `<span class="star">★</span> auth refactor` },
+      { chat: `<span class="dim">workspace ~/code/webapp</span><br><span class="ok">Pinned: auth refactor</span>`, prompt: "", picker: "here", hint: "same chrome as /resume", status: `<span class="star">★</span> auth refactor` },
+      { chat: `<span class="dim">workspace ~/code/webapp</span><br><span class="ok">Pinned: auth refactor</span>`, prompt: "", picker: "sel1", hint: "enter opens · tab scope · ctrl+d unpin", status: `<span class="star">★</span> auth refactor` },
+      { chat: `<span class="dim">workspace ~/code/webapp</span><br><span class="ok">Pinned: auth refactor</span><br><span class="user">Opened auth refactor</span>`, prompt: `> <span class="caret"></span>`, picker: "", hint: "resumed from any workspace", status: `<span class="star">★</span> auth refactor` },
+    ];
+
+    function pickerHtml(kind) {
+      if (!kind) return "";
+      const a = kind === "sel1";
+      return `<div class="rule">────────────────────────────────────────</div>
+<div><span class="sel">Bookmarks (All)</span>  <span class="dim">2</span>     ○ Current Folder | <span class="sel">◉ All</span></div>
+<br>
+<div class="row">${a ? '<span class="sel">▸ ★ auth refactor</span>' : '  ★ auth refactor'}   <span class="dim">now   ~/code/webapp</span></div>
+<div class="row">${a ? '    login form wip' : '<span class="sel">▸   login form wip</span>'}   <span class="dim">11h   ~/code/webapp</span></div>
+<br>
+<div class="dim">type to filter · tab scope · enter open · esc</div>
+<div class="rule">────────────────────────────────────────</div>`;
+    }
+
+    window.setFrame = (i) => {
+      const f = frames[Math.max(0, Math.min(frames.length - 1, i))];
+      document.getElementById("chat").innerHTML = f.chat;
+      document.getElementById("prompt").innerHTML = f.prompt;
+      const p = document.getElementById("picker");
+      p.innerHTML = pickerHtml(f.picker);
+      p.className = "picker" + (f.picker ? " on" : "");
+      document.getElementById("hint").innerHTML = f.hint;
+      document.getElementById("status").innerHTML = f.status;
+      document.title = "frame-" + i;
+      return frames.length;
+    };
+    setFrame(0);
+  </script>
+</body>
+</html>

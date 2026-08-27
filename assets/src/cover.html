@@ -1,0 +1,203 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <title>pi-bookmark cover</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,500;12..96,800&family=IBM+Plex+Mono:wght@400;500;600&display=swap" rel="stylesheet" />
+  <style>
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    html, body { width: 1600px; height: 900px; overflow: hidden; background: #17140f; }
+    body {
+      font-family: "Bricolage Grotesque", sans-serif;
+      color: #f4e7c3;
+      background:
+        radial-gradient(1200px 700px at 12% -10%, #2a2418 0%, transparent 55%),
+        radial-gradient(900px 600px at 100% 110%, #3a2a12 0%, transparent 50%),
+        #17140f;
+    }
+    .stage {
+      width: 1600px;
+      height: 900px;
+      position: relative;
+      padding: 64px 72px;
+    }
+    .kicker {
+      font-family: "IBM Plex Mono", monospace;
+      font-size: 15px;
+      letter-spacing: 0.28em;
+      text-transform: uppercase;
+      color: #c9a227;
+    }
+    h1 {
+      margin-top: 14px;
+      font-size: 92px;
+      font-weight: 800;
+      letter-spacing: -0.045em;
+      line-height: 0.92;
+      color: #f6edd4;
+    }
+    h1 span { color: #c9a227; }
+    .lede {
+      margin-top: 22px;
+      max-width: 640px;
+      font-size: 28px;
+      font-weight: 500;
+      line-height: 1.25;
+      color: #d8ccb0;
+    }
+    .cmds {
+      display: flex;
+      gap: 12px;
+      margin-top: 36px;
+    }
+    .chip {
+      font-family: "IBM Plex Mono", monospace;
+      font-size: 18px;
+      padding: 10px 14px;
+      border: 1px solid #c9a22766;
+      background: #c9a22714;
+      color: #f4e7c3;
+    }
+    .install {
+      position: absolute;
+      left: 72px;
+      bottom: 64px;
+      font-family: "IBM Plex Mono", monospace;
+      font-size: 20px;
+      color: #c9a227;
+    }
+    .stack {
+      position: absolute;
+      right: 70px;
+      top: 118px;
+      width: 620px;
+      height: 640px;
+    }
+    .ticket {
+      position: absolute;
+      width: 540px;
+      height: 310px;
+      background: #f4e7c3;
+      color: #17140f;
+      border-radius: 4px 18px 18px 4px;
+      box-shadow: 0 18px 50px #00000066;
+      overflow: hidden;
+    }
+    .ticket::after {
+      content: "";
+      position: absolute;
+      right: -1px;
+      top: 0;
+      bottom: 0;
+      width: 28px;
+      background:
+        radial-gradient(circle at 0 18px, transparent 10px, #17140f 11px) 0 0 / 28px 36px;
+    }
+    .t1 { transform: rotate(-7deg) translate(18px, 40px); background: #3d5a80; color: #e8eef6; }
+    .t2 { transform: rotate(3.5deg) translate(40px, 168px); }
+    .t2 .meta, .t2 .title, .t2 .path,
+    .t3 .meta, .t3 .title, .t3 .path { padding-left: 96px; }
+    .t3 { transform: rotate(-1.5deg) translate(8px, 292px); z-index: 2; }
+    .meta {
+      font-family: "IBM Plex Mono", monospace;
+      font-size: 13px;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      opacity: 0.62;
+      padding: 28px 32px 0;
+    }
+    .title {
+      padding: 10px 32px 0;
+      font-size: 34px;
+      font-weight: 800;
+      letter-spacing: -0.03em;
+    }
+    .path {
+      font-family: "IBM Plex Mono", monospace;
+      padding: 14px 32px 0;
+      font-size: 15px;
+      opacity: 0.7;
+    }
+    .stamp {
+      position: absolute;
+      right: 48px;
+      bottom: 36px;
+      width: 92px;
+      height: 92px;
+      border: 3px solid #9e2b25;
+      color: #9e2b25;
+      border-radius: 50%;
+      display: grid;
+      place-items: center;
+      font-family: "IBM Plex Mono", monospace;
+      font-size: 13px;
+      font-weight: 600;
+      letter-spacing: 0.12em;
+      transform: rotate(-18deg);
+      text-transform: uppercase;
+    }
+    .t1 .stamp { border-color: #f4e7c3; color: #f4e7c3; opacity: 0.55; }
+    .pin {
+      position: absolute;
+      left: -18px;
+      top: 236px;
+      z-index: 5;
+      width: 86px;
+      height: 86px;
+      border-radius: 50%;
+      background: radial-gradient(circle at 35% 30%, #f0d36a, #c9a227 46%, #8a6a12 100%);
+      box-shadow: 0 10px 0 #6d5310, 0 18px 28px #00000088;
+      display: grid;
+      place-items: center;
+      color: #17140f;
+      font-size: 44px;
+      line-height: 1;
+    }
+    .geo {
+      position: absolute;
+      right: 72px;
+      bottom: 64px;
+      font-family: "IBM Plex Mono", monospace;
+      font-size: 14px;
+      color: #8a8178;
+      text-align: right;
+    }
+  </style>
+</head>
+<body>
+  <div class="stage">
+    <div class="kicker">Pi coding agent extension · pi-package</div>
+    <h1>pi-<span>bookmark</span></h1>
+    <p class="lede">Pin a Pi session. Keep the thread. Resume it from any workspace.</p>
+    <div class="cmds">
+      <div class="chip">/pin</div>
+      <div class="chip">/unpin</div>
+      <div class="chip">/bookmarks</div>
+    </div>
+    <div class="install">$ pi install npm:pi-bookmark</div>
+    <div class="stack">
+      <div class="ticket t1">
+        <div class="meta">session · 2d</div>
+        <div class="title">scratch / tmp</div>
+        <div class="path">~/Downloads</div>
+        <div class="stamp">noise</div>
+      </div>
+      <div class="ticket t2">
+        <div class="meta">session · 11h</div>
+        <div class="title">login form wip</div>
+        <div class="path">~/code/webapp</div>
+      </div>
+      <div class="ticket t3">
+        <div class="meta">pinned session · now</div>
+        <div class="title">auth refactor</div>
+        <div class="path">~/code/webapp</div>
+        <div class="stamp">keep</div>
+      </div>
+      <div class="pin">★</div>
+    </div>
+    <div class="geo">bookmark · pin · resume<br/>Pi coding-agent session</div>
+  </div>
+</body>
+</html>

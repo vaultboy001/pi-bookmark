@@ -83,11 +83,11 @@
       { chat: `<span class="dim">workspace ~/code/webapp</span>`, prompt: `> <span class="caret"></span>`, picker: "", hint: "pin the session you want to keep", status: "" },
       { chat: `<span class="dim">workspace ~/code/webapp</span>`, prompt: `> /p<span class="caret"></span>`, picker: "", hint: "slash command", status: "" },
       { chat: `<span class="dim">workspace ~/code/webapp</span>`, prompt: `> /pin auth refactor<span class="caret"></span>`, picker: "", hint: "pin current Pi session", status: "" },
-      { chat: `<span class="dim">workspace ~/code/webapp</span><br><span class="ok">Pinned: auth refactor</span>`, prompt: `> <span class="caret"></span>`, picker: "", hint: "session is now in the global pin list", status: `<span class="star">★</span> auth refactor` },
-      { chat: `<span class="dim">workspace ~/code/webapp</span><br><span class="ok">Pinned: auth refactor</span>`, prompt: `> /bookmarks<span class="caret"></span>`, picker: "", hint: "open the /resume-style picker", status: `<span class="star">★</span> auth refactor` },
-      { chat: `<span class="dim">workspace ~/code/webapp</span><br><span class="ok">Pinned: auth refactor</span>`, prompt: "", picker: "here", hint: "same chrome as /resume", status: `<span class="star">★</span> auth refactor` },
-      { chat: `<span class="dim">workspace ~/code/webapp</span><br><span class="ok">Pinned: auth refactor</span>`, prompt: "", picker: "sel1", hint: "enter opens · tab scope · ctrl+d unpin", status: `<span class="star">★</span> auth refactor` },
-      { chat: `<span class="dim">workspace ~/code/webapp</span><br><span class="ok">Pinned: auth refactor</span><br><span class="user">Opened auth refactor</span>`, prompt: `> <span class="caret"></span>`, picker: "", hint: "resumed from any workspace", status: `<span class="star">★</span> auth refactor` },
+      { chat: `<span class="dim">workspace ~/code/webapp</span><br><span class="ok">Pinned: auth refactor</span>`, prompt: `> <span class="caret"></span>`, picker: "", hint: "session is now in the global pin list", status: `<span class="star">◢</span>` },
+      { chat: `<span class="dim">workspace ~/code/webapp</span><br><span class="ok">Pinned: auth refactor</span>`, prompt: `> /bookmarks<span class="caret"></span>`, picker: "", hint: "open the /resume-style picker", status: `<span class="star">◢</span>` },
+      { chat: `<span class="dim">workspace ~/code/webapp</span><br><span class="ok">Pinned: auth refactor</span>`, prompt: "", picker: "here", hint: "same chrome as /resume", status: `<span class="star">◢</span>` },
+      { chat: `<span class="dim">workspace ~/code/webapp</span><br><span class="ok">Pinned: auth refactor</span>`, prompt: "", picker: "sel1", hint: "enter opens · tab scope · ctrl+d unpin", status: `<span class="star">◢</span>` },
+      { chat: `<span class="dim">workspace ~/code/webapp</span><br><span class="ok">Pinned: auth refactor</span><br><span class="user">Opened auth refactor</span>`, prompt: `> <span class="caret"></span>`, picker: "", hint: "resumed from any workspace", status: `<span class="star">◢</span>` },
     ];
 
     function pickerHtml(kind) {
@@ -96,7 +96,7 @@
       return `<div class="rule">────────────────────────────────────────</div>
 <div><span class="sel">Bookmarks (All)</span>  <span class="dim">2</span>     ○ Current Folder | <span class="sel">◉ All</span></div>
 <br>
-<div class="row">${a ? '<span class="sel">▸ ★ auth refactor</span>' : '  ★ auth refactor'}   <span class="dim">now   ~/code/webapp</span></div>
+<div class="row">${a ? '<span class="sel">▸ ◢ auth refactor</span>' : '  ◢ auth refactor'}   <span class="dim">now   ~/code/webapp</span></div>
 <div class="row">${a ? '    login form wip' : '<span class="sel">▸   login form wip</span>'}   <span class="dim">11h   ~/code/webapp</span></div>
 <br>
 <div class="dim">type to filter · tab scope · enter open · esc</div>
@@ -115,7 +115,9 @@
       document.title = "frame-" + i;
       return frames.length;
     };
-    setFrame(0);
+    // frame 0 by default, frame=N via ?frame=N for headless captures
+    const frameParam = new URLSearchParams(location.search).get('frame');
+    setFrame(frameParam ? Number(frameParam) : 0);
   </script>
 </body>
 </html>

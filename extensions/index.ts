@@ -2,7 +2,7 @@ import { existsSync } from "node:fs";
 import { StringEnum } from "@earendil-works/pi-ai";
 import type { ExtensionAPI, ExtensionCommandContext, ExtensionContext } from "@earendil-works/pi-coding-agent";
 import { Type } from "typebox";
-import { bookmarkTitle, collapse, firstUserPreview } from "./format.js";
+import { bookmarkTitle, firstUserPreview } from "./format.js";
 import { BookmarkSelector, type BookmarkPickerResult } from "./overlay.js";
 import { BookmarkStore, type Bookmark } from "./store.js";
 
@@ -36,8 +36,7 @@ export default function (pi: ExtensionAPI) {
 			ctx.ui.setStatus(STATUS_ID, undefined);
 			return;
 		}
-		const label = collapse(bookmarkTitle(bookmark), 32);
-		ctx.ui.setStatus(STATUS_ID, `${ctx.ui.theme.fg("accent", "★")} ${ctx.ui.theme.fg("dim", label)}`);
+		ctx.ui.setStatus(STATUS_ID, `\u001b[999C${ctx.ui.theme.fg("accent", "◢")}`);
 	};
 
 	const silentRefresh = (ctx: ExtensionContext): void => {

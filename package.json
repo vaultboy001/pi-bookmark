@@ -1,7 +1,7 @@
 {
   "name": "pi-bookmark",
-  "version": "0.1.0",
-  "description": "Pi coding agent extension to pin, bookmark, and resume important Pi sessions from any workspace. Commands: /pin, /unpin, /bookmarks.",
+  "version": "0.1.1",
+  "description": "Pin important Pi sessions and resume them from any workspace. Slash commands: /pin, /unpin, /bookmarks.",
   "type": "module",
   "license": "MIT",
   "author": "vaultboy001",
@@ -17,22 +17,15 @@
     "pi-package",
     "pi",
     "pi-coding-agent",
-    "pi coding agent",
-    "@earendil-works/pi-coding-agent",
+    "extension",
     "bookmark",
-    "bookmark session",
     "pin",
-    "pin session",
-    "unpin",
-    "favorite",
-    "star",
     "session",
     "resume",
-    "session manager",
-    "slash-command",
+    "session-manager",
+    "favorite",
     "tui",
-    "cli",
-    "coding-agent"
+    "cli"
   ],
   "files": [
     "extensions",
@@ -40,7 +33,7 @@
     "LICENSE",
     "llms.txt",
     "assets/cover.png",
-    "assets/demo.gif"
+    "assets/demo.mp4"
   ],
   "engines": {
     "node": ">=22.19.0"
@@ -55,6 +48,7 @@
     "extensions": [
       "./extensions/index.ts"
     ],
-    "image": "https://raw.githubusercontent.com/vaultboy001/pi-bookmark/main/assets/cover.png"
+    "image": "https://raw.githubusercontent.com/vaultboy001/pi-bookmark/main/assets/cover.png",
+    "video": "https://raw.githubusercontent.com/vaultboy001/pi-bookmark/main/assets/demo.mp4"
   }
 }

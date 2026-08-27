@@ -1,42 +1,40 @@
+<p>
+  <img src="assets/cover.png" alt="pi-bookmark" width="1100">
+</p>
+
 # pi-bookmark
 
-**pi-bookmark** is a [Pi coding agent](https://pi.dev) extension (`pi-package`) that **pins important Pi sessions** so you can **bookmark and resume** them from any workspace.
+**Pin important Pi sessions. Keep the thread. Resume it from any workspace.**
 
-Pi’s built-in `/resume` lists every session you ever started. After a week that list is noise. pi-bookmark keeps a short, global pin list of the threads you actually want again.
+A [Pi coding agent](https://pi.dev) extension (`pi-package`) that gives you a short, global list of the sessions you actually want again — instead of scrolling Pi's `/resume` and hoping.
 
-[![pi-bookmark cover](assets/cover.png)](https://github.com/vaultboy001/pi-bookmark)
+<https://raw.githubusercontent.com/vaultboy001/pi-bookmark/main/assets/demo.mp4>
 
-[![Demo](assets/demo.gif)](https://github.com/vaultboy001/pi-bookmark)
+## Why this exists
 
-```bash
-pi install npm:pi-bookmark
-```
+Pi's built-in [`/resume`](https://github.com/earendil-works/pi/blob/main/packages/coding-agent/docs/sessions.md) lists every session you ever started. After a week that's 50+ entries with no titles, no tags, and no order. The big session where you fixed the auth bug is buried between two scratch sessions.
 
-Then `/reload` or restart Pi.
-
-Also known as: pin a Pi session, bookmark a Pi coding-agent session, favorite / star a Pi conversation, `/pin` `/unpin` `/bookmarks`.
+pi-bookmark fixes that with three commands: `/pin` (bookmark the current session), `/unpin`, and `/bookmarks` (a `/resume`-style picker of only your pinned sessions). Pins are global — a bookmark made in `~/code/webapp` can be opened from anywhere, and Pi's runtime cwd follows the session.
 
 ## Install
 
-**From npm** (Pi package gallery):
-
 ```bash
 pi install npm:pi-bookmark
 ```
 
-**From git:**
+That is the only required step. Then `/reload` or restart Pi.
 
-```bash
-pi install git:github.com/vaultboy001/pi-bookmark
+Requires the [Pi coding agent](https://www.npmjs.com/package/@earendil-works/pi-coding-agent) (`pi` on your PATH), Node `>= 22.19`.
+
+## Quick start
+
+```text
+/pin auth refactor        pin the current session, give it a note
+/pin                      if already pinned, open the picker
+/bookmarks auth           open the picker, filtered to "auth"
 ```
 
-**Try once without installing:**
-
-```bash
-pi -e npm:pi-bookmark
-```
-
-Requires [Pi coding agent](https://www.npmjs.com/package/@earendil-works/pi-coding-agent) (`pi` on your PATH). Node `>= 22.19`.
+Press `enter` on a row to switch into that session. That's it — no config, no index to build, no files touched besides the bookmark store.
 
 ## Commands
 
@@ -55,7 +53,7 @@ The model can call the `pin_session` tool (`add` / `remove` / `list`) when you a
 
 ## Picker
 
-`/bookmarks` uses the same picker chrome as Pi `/resume` (SelectList + DynamicBorder, not a floating overlay).
+`/bookmarks` uses the same picker chrome as Pi `/resume` (SelectList + DynamicBorder, not a floating overlay) — so it feels native.
 
 | Key | Action |
 | --- | --- |

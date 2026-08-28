@@ -1,0 +1,5 @@
+# Keep internal handoff docs out of the published package
+docs/
+assets/src/
+assets/_frames/
+*.log

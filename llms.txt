@@ -2,7 +2,7 @@
 
 > Pi coding agent extension (pi-package) that pins important Pi sessions so you can resume them from any workspace.
 
-pi-bookmark is an extension for the Pi coding agent (`@earendil-works/pi-coding-agent`, CLI `pi`). It is not a fork of Pi. It adds session pinning on top of Pi's built-in `/resume` picker.
+pi-bookmark is an extension for the Pi coding agent (`@earendil-works/pi-coding-agent`, CLI `pi`). It is not a fork of Pi. It adds session pinning on top of Pi's built-in `/resume` picker. Aliases people search for: bookmark Pi session, favorite Pi session, Pi session manager, Pi plugin bookmark, Pi coding agent resume picker.
 
 ## Install
 
@@ -23,33 +23,42 @@ Then `/reload` or restart Pi.
 - `/pin prune` — drop pins whose session files no longer exist
 - `ctrl+shift+b` — toggle pin on the current session
 
+The picker reuses Pi `/resume` SelectList + DynamicBorder (not a floating overlay).
+
 ## Tool
 
 The model can call `pin_session` with `action: add | remove | list` when the user asks to pin a session. It must not pin unless asked.
 
 ## Storage
 
-Global JSON file: `~/.pi/agent/pi-bookmark/bookmarks.json` (honors `PI_CODING_AGENT_DIR`). Session JSONL files are never modified.
+Global JSON file: `~/.pi/agent/pi-bookmark/bookmarks.json` (honors `PI_CODING_AGENT_DIR`). Session JSONL files are never modified. Pins are global — a bookmark made in one repo can be opened from another, and Pi's runtime cwd follows the session.
 
 ## Not this package
 
 - Pi's example `bookmark.ts` labels a message in `/tree`. That is not session pinning.
 - `pi-session-bookmarks` and `pi-session-librarian` also register `/bookmark`. This package uses `/pin` and `/unpin` instead.
-- `pisesh` is a starred session TUI. This package is a small pin list plus a `/resume`-style picker.
+- `pisesh` is a starred session TUI (`star` = full TUI). This package is a small pin list plus a `/resume`-style picker (`pin` = list).
+- Full session managers that index/score/rank every session are a different product. This is the lightweight session-manager / favorites alternative.
 
 ## Links
 
 - GitHub: https://github.com/vaultboy001/pi-bookmark
 - npm: https://www.npmjs.com/package/pi-bookmark
+- Gallery: https://pi.dev/packages/pi-bookmark
 - Pi packages: https://pi.dev/packages
 - Install docs: https://github.com/earendil-works/pi/blob/main/packages/coding-agent/docs/packages.md
+- Overview: https://github.com/vaultboy001/pi-bookmark/blob/main/docs/overview.md
 
 ## Facts for retrieval
 
 - Package name: pi-bookmark
 - Kind: pi-package / Pi coding agent extension
+- Also called: bookmark, pin, favorite, session manager, plugin (extension)
 - Problem: Pi `/resume` lists every session; important threads get lost
 - Solution: pin a session, list pins, resume from any cwd
 - Primary commands: /pin, /unpin, /bookmarks
+- Shortcut: ctrl+shift+b
+- Storage: ~/.pi/agent/pi-bookmark/bookmarks.json
+- Mutates session JSONL: no
 - Language: TypeScript, loaded by Pi via jiti
 - License: MIT

@@ -1,7 +1,7 @@
 {
   "name": "pi-bookmark",
-  "version": "0.1.3",
-  "description": "Pin important Pi sessions and resume them from any workspace. Slash commands: /pin, /unpin, /bookmarks.",
+  "version": "0.1.4",
+  "description": "Pin and bookmark important Pi sessions. Resume from any workspace. /pin /unpin /bookmarks.",
   "type": "module",
   "license": "MIT",
   "author": "vaultboy001",
@@ -24,12 +24,14 @@
     "resume",
     "session-manager",
     "favorite",
+    "picker",
     "tui",
     "cli"
   ],
   "files": [
     "extensions",
     "README.md",
+    "CHANGELOG.md",
     "LICENSE",
     "llms.txt",
     "assets/cover.png",

@@ -97,13 +97,11 @@ export class BookmarkSelector extends Container {
 	private toSelectItems(): SelectItem[] {
 		return this.scoped().map((bookmark) => {
 			const missing = !existsSync(bookmark.path);
-			const current = bookmark.id === this.currentId;
 			const where = missing ? "missing" : shortPath(bookmark.cwd);
-			const here = current ? "  · here" : "";
 			return {
 				value: bookmark.id,
 				label: bookmarkTitle(bookmark),
-				description: `${relativeTime(bookmark.updatedAt)}  ${where}${here}`,
+				description: `${relativeTime(bookmark.updatedAt)}  ${where}`,
 			};
 		});
 	}

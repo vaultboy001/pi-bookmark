@@ -1,6 +1,6 @@
 {
   "name": "pi-bookmark",
-  "version": "0.1.4",
+  "version": "0.1.5",
   "description": "Pin and bookmark important Pi sessions. Resume from any workspace. /pin /unpin /bookmarks.",
   "type": "module",
   "license": "MIT",

@@ -179,8 +179,9 @@ export default function (pi: ExtensionAPI) {
 
 			const id = ctx.sessionManager.getSessionId();
 			const existing = id ? store.find(id) : undefined;
-			if (!text && existing) {
-				await openPicker(ctx);
+
+			if (existing && !text) {
+				ctx.ui.notify(`Already pinned: ${bookmarkTitle(existing)}`, "info");
 				return;
 			}
 

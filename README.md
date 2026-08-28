@@ -30,7 +30,7 @@ Requires the [Pi coding agent](https://www.npmjs.com/package/@earendil-works/pi-
 
 ```text
 /pin auth refactor        pin the current session, give it a note
-/pin                      if already pinned, open the picker
+/pin                      pin the current session (already pinned? shows it)
 /bookmarks auth           open the picker, filtered to "auth"
 ```
 
@@ -41,9 +41,8 @@ Press `enter` on a row to switch into that session. That's it — no config, no 
 | Command | What it does |
 | --- | --- |
 | `/pin [note]` | Pin (bookmark) the current Pi session |
-| `/pin` | If already pinned, open the bookmark picker |
-| `/unpin` | Unpin this session |
 | `/bookmarks [query]` | `/resume`-style picker of pinned sessions |
+| `/unpin` | Unpin this session |
 | `/pin list` | Same as `/bookmarks` |
 | `/pin rm` | Same as `/unpin` |
 | `/pin prune` | Drop pins whose session files are gone |

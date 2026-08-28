@@ -98,12 +98,12 @@ export class BookmarkSelector extends Container {
 		return this.scoped().map((bookmark) => {
 			const missing = !existsSync(bookmark.path);
 			const current = bookmark.id === this.currentId;
-			const mark = missing ? "× " : current ? "◢ " : "";
 			const where = missing ? "missing" : shortPath(bookmark.cwd);
+			const here = current ? "  · here" : "";
 			return {
 				value: bookmark.id,
-				label: `${mark}${bookmarkTitle(bookmark)}`,
-				description: `${relativeTime(bookmark.updatedAt)}  ${where}`,
+				label: bookmarkTitle(bookmark),
+				description: `${relativeTime(bookmark.updatedAt)}  ${where}${here}`,
 			};
 		});
 	}

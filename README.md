@@ -70,7 +70,7 @@ The model can call the `pin_session` tool (`add` / `remove` / `list`) when you a
 | `ctrl+r` | edit note |
 | `esc` | close |
 
-Current session is marked `◢`. Missing files are marked `×` and cannot be opened. A solid `◢` appears at the far right of the footer, under the model name, when the session you are in is pinned.
+Current session is marked `· here` in the row description. Missing files show `missing` and cannot be opened. A solid `◢` appears at the far right of the footer, under the model name, when the session you are in is pinned.
 
 ## Storage
 
